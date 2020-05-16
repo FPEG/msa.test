@@ -4,6 +4,11 @@ pipeline {
         stage('test'){
             steps{
                 echo "NOENV: ${env.NOENV}"
+                script{
+                    if(env.NOENV==null){
+                        sh 'echo nullyes'
+                    }
+                }
             }
         }
         //stage('down'){

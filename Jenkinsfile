@@ -21,7 +21,8 @@ pipeline {
                 expression { env.MYENV == 'TEST'||(env.MYENV == 'PROD'&&env.MY_GIT_TAG.startsWith("v")) }
                 }
             steps {
-                sh 'docker-compose down -v'
+                echo 'active'
+                //sh 'docker-compose down -v'
             }
         }
         stage('build') {

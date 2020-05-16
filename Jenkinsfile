@@ -28,6 +28,7 @@ pipeline {
                 }
             steps {
                 script {
+
                     env.MY_GIT_TAG = sh(returnStdout: true, script: 'git tag -l --points-at HEAD').trim()
                     if(env.MY_GIT_TAG.startsWith("v"))
                     {

@@ -23,7 +23,7 @@ pipeline {
             agent {
                     docker {
                         image 'gradle:jdk14'
-                        args '-v /root/.gradle:/home/gradle/.gradle -v /var/run/docker.sock:/var/run/docker.sock -v /usr/bin/docker:/usr/bin/docker'
+                        args '-v /root/.gradle:/home/gradle/.gradle -v /var/run/docker.sock:/var/run/docker.sock -v /usr/bin/docker:/usr/bin/docker -e "MYENV='+env.MYENV+''
                     }
                 }
             steps {

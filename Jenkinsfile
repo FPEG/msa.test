@@ -29,6 +29,7 @@ pipeline {
             steps {
                 script {
                     env.MY_GIT_TAG = sh(returnStdout: true, script: 'git tag -l --points-at HEAD').trim()
+                    echo "${env.MY_GIT_TAG}"
                     if(env.MYENV!=null){
                         sh "echo INGRADLE:${env.MYENV}"
                     }

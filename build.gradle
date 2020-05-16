@@ -24,7 +24,7 @@ ext {
 }
 task mytask{
     ext.apiToken = System.getenv('API_TOKEN')
-    print System.getenv('MYENV')
+    print "$System.env.MYENV"
 }
 
 docker {

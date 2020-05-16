@@ -43,7 +43,7 @@ pipeline {
 				sh 'printenv'
 				//sh 'gradle build'
 				//sh 'docker'
-				//sh 'gradle docker --debug'
+				sh 'gradle mytask'
 				//sh 'gradle dockerTagLatest'
             }
         }

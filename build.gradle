@@ -22,6 +22,10 @@ repositories {
 ext {
     set('springCloudVersion', "Hoxton.SR4")
 }
+task mytask{
+    ext.apiToken = System.getenv('API_TOKEN')
+    print System.getenv('MYENV')
+}
 
 docker {
     dependsOn bootJar

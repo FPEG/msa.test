@@ -23,7 +23,7 @@ ext {
     set('springCloudVersion', "Hoxton.SR4")
 }
 task mytask{
-    url = (System.getenv('MYENV')=='TEST') ? NEXUS_URL_TEST : NEXUS_URL_PROD
+    def url = (System.getenv('MYENV')=='TEST') ? NEXUS_URL_TEST : NEXUS_URL_PROD
     println url
 }
 

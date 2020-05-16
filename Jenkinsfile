@@ -8,6 +8,9 @@ pipeline {
                     if(env.NOENV==null){
                         sh 'echo nullyes'
                     }
+                    if(env.MYENV!=null){
+                        sh "echo ${env.MYENV}"
+                    }
                 }
             }
         }
@@ -26,6 +29,9 @@ pipeline {
             steps {
                 script {
                     env.MY_GIT_TAG = sh(returnStdout: true, script: 'git tag -l --points-at HEAD').trim()
+                    if(env.MYENV!=null){
+                        sh "echo INGRADLE:${env.MYENV}"
+                    }
                 }
                 echo "NOENV IN GRADLE: ${env.NOENV}"
                 echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"

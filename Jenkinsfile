@@ -2,7 +2,9 @@ pipeline {
     agent any
     stages {
         stage('test'){
-            echo "NOENV: ${env.NOENV}"
+            steps{
+                echo "NOENV: ${env.NOENV}"
+            }
         }
         //stage('down'){
         //    steps {

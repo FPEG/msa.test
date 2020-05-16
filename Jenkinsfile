@@ -16,6 +16,7 @@ pipeline {
             }
         }
         stage('down'){
+
             when {
                 // Only say hello if a "greeting" is requested
                 expression {

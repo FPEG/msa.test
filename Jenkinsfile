@@ -1,11 +1,14 @@
 pipeline {
     agent any
     stages {
-        stage('down'){
-            steps {
-                sh 'docker-compose down -v'
-            }
+        stage('test'){
+            echo "NOENV: {$env.NOENV}"
         }
+        //stage('down'){
+        //    steps {
+        //        sh 'docker-compose down -v'
+        //    }
+        //}
         stage('build') {
             agent {
                     docker {
@@ -17,18 +20,19 @@ pipeline {
                 script {
                     env.MY_GIT_TAG = sh(returnStdout: true, script: 'git tag -l --points-at HEAD').trim()
                 }
+                echo "NOENV IN GRADLE: {$env.NOENV}"
                 echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
 				sh 'printenv'
 				//sh 'gradle build'
-				sh 'docker'
-				sh 'gradle docker --debug'
-				sh 'gradle dockerTagLatest'
+				//sh 'docker'
+				//sh 'gradle docker --debug'
+				//sh 'gradle dockerTagLatest'
             }
-        }
-        stage('compose'){
-            steps {
-                sh 'docker-compose up -d'
-            }
-        }
+        //}
+        //stage('compose'){
+        //    steps {
+        //        sh 'docker-compose up -d'
+        //    }
+        //}
     }
 }

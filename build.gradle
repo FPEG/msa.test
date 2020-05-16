@@ -23,9 +23,8 @@ ext {
     set('springCloudVersion', "Hoxton.SR4")
 }
 task mytask{
-    ext.apiToken = System.getenv('API_TOKEN')
-    println System.getenv( 'MYENV' )
-    println NEXUS_URL_TEST
+    url = (System.getenv('MYENV')=='TEST') ? NEXUS_URL_TEST : NEXUS_URL_PROD
+    println url
 }
 
 docker {

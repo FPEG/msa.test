@@ -2,7 +2,7 @@ pipeline {
     agent any
     stages {
         stage('test'){
-            echo "NOENV: {$env.NOENV}"
+            echo "NOENV: ${env.NOENV}"
         }
         //stage('down'){
         //    steps {
@@ -20,7 +20,7 @@ pipeline {
                 script {
                     env.MY_GIT_TAG = sh(returnStdout: true, script: 'git tag -l --points-at HEAD').trim()
                 }
-                echo "NOENV IN GRADLE: {$env.NOENV}"
+                echo "NOENV IN GRADLE: ${env.NOENV}"
                 echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
 				sh 'printenv'
 				//sh 'gradle build'

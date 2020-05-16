@@ -5,6 +5,7 @@ pipeline {
             steps{
                 echo "NOENV: ${env.NOENV}"
                 script{
+                    env.MY_GIT_TAG = sh(returnStdout: true, script: 'git tag -l --points-at HEAD').trim()
                     if(env.NOENV==null){
                         sh 'echo nullyes'
                     }
@@ -14,11 +15,15 @@ pipeline {
                 }
             }
         }
-        //stage('down'){
-        //    steps {
-        //        sh 'docker-compose down -v'
-        //    }
-        //}
+        stage('down'){
+            when {
+                // Only say hello if a "greeting" is requested
+                expression { env.MYENV == 'TEST'||(env.MYENV == 'PROD'&&env.MY_GIT_TAG.startsWith("v")) }
+                }
+            steps {
+                sh 'docker-compose down -v'
+            }
+        }
         stage('build') {
             agent {
                     docker {
@@ -28,8 +33,6 @@ pipeline {
                 }
             steps {
                 script {
-
-                    env.MY_GIT_TAG = sh(returnStdout: true, script: 'git tag -l --points-at HEAD').trim()
                     if(env.MY_GIT_TAG.startsWith("v"))
                     {
                         sh 'echo tagstartwithv'

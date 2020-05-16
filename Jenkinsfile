@@ -28,7 +28,7 @@ pipeline {
 				//sh 'gradle docker --debug'
 				//sh 'gradle dockerTagLatest'
             }
-        //}
+        }
         //stage('compose'){
         //    steps {
         //        sh 'docker-compose up -d'

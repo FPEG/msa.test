@@ -25,6 +25,7 @@ ext {
 task mytask{
     ext.apiToken = System.getenv('API_TOKEN')
     println System.getenv( 'MYENV' )
+    println NEXUS_URL_TEST
 }
 
 docker {

@@ -18,7 +18,10 @@ pipeline {
         stage('down'){
             when {
                 // Only say hello if a "greeting" is requested
-                expression { env.MYENV == 'TEST'||(env.MYENV == 'PROD'&&env.MY_GIT_TAG.startsWith("v")) }
+                expression {
+                    echo 'asdasd'
+                    return env.MYENV == 'TEST'||(env.MYENV == 'PROD'&&env.MY_GIT_TAG.startsWith("v"))
+                    }
                 }
             steps {
                 echo 'active'
